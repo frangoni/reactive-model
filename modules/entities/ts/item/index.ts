@@ -51,7 +51,7 @@ export /*bundle*/ abstract class Item<T> extends ReactiveModel<IITem> {
 	}
 
 	get isOnline() {
-		return this.localProvider.isOnline && !localStorage.getItem('reactive.offline');
+		return this.localProvider?.isOnline && !localStorage.getItem('reactive.offline');
 	}
 
 	#found;

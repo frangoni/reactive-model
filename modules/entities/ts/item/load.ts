@@ -36,10 +36,11 @@ export class ItemLoadManager {
 			// }
 
 			// if (this.#localProvider && !this.#localProvider.isOnline) return { status: true };
-
+			console.log("this.#provider", this.#provider)
 			if (!this.#provider) return;
 
 			const remoteData = await this.remoteLoad(params);
+			console.log("🚀 ~ file: load.ts:43 ~ ItemLoadManager ~ load= ~ remoteData:", remoteData)
 			if (!remoteData) this.#parent.found = false;
 
 			if (remoteData) {
@@ -62,10 +63,14 @@ export class ItemLoadManager {
 	};
 
 	remoteLoad = async params => {
+		console.log("🚀 ~ file: load.ts:73 ~ ItemLoadManager ~ params:", params);
+		console.log("this.#parent.isOnline", this.#parent.isOnline)
 		// TODO: CHANGE TO LOAD
-		if (!this.#parent.isOnline) return;
+		//if (!this.#parent.isOnline) return;
 		const response = await this.#provider.data(params);
+		console.log("🚀 ~ file: load.ts:71 ~ ItemLoadManager ~ response:", response)
 		if (!response.status) throw 'ERROR_DATA_QUERY';
 		return response.data;
 	};
 }
+	

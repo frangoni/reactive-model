@@ -42,15 +42,16 @@ export class ItemLoadManager {
 			const remoteData = await this.remoteLoad(params);
 			console.log("🚀 ~ file: load.ts:43 ~ ItemLoadManager ~ load= ~ remoteData:", remoteData)
 			if (!remoteData) this.#parent.found = false;
+			this.#parent.set(remoteData);
 
-			if (remoteData) {
-				let same = true;
-				Object.keys(remoteData).forEach(key => {
-					let original = this.#localProvider.registry.values;
-					if (original[key] !== remoteData[key]) same = false;
-				});
-				//if (!same) await this.#localProvider.save(remoteData);
-			}
+			// if (remoteData) {
+			// 	let same = true;
+			// 	Object.keys(remoteData).forEach(key => {
+			// 		let original = this.#localProvider.registry.values;
+			// 		if (original[key] !== remoteData[key]) same = false;
+			// 	});
+			// 	//if (!same) await this.#localProvider.save(remoteData);
+			// }
 
 			this.#parent.found = true;
 			return { status: true };
